@@ -268,7 +268,8 @@ def make_plots(results: dict):
     for cont, color in CONTINENT_COLORS.items():
         handles.append(mpatches.Patch(color=color, label=cont))
 
-    ax.legend(handles=handles + ax.get_legend_handles_labels()[0:1])
+    handles2, labels2 = ax.get_legend_handles_labels()
+    ax.legend(handles + handles2, [h.get_label() for h in handles] + labels2)
     plt.tight_layout()
     plt.savefig(f"{FIGURES_DIR}/fig2_distance_scatter.png", dpi=150, bbox_inches="tight")
     plt.close()
